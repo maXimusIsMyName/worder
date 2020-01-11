@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap');
 $theme-colors: (
   "primary": #70ffe8,
   "secondary": #ff4136,
@@ -8,4 +9,5 @@ $theme-colors: (
   "light":#e5e5e5,
   "dark": #212121
 );
+
 @import "~bootstrap/scss/bootstrap";
