@@ -1,20 +1,66 @@
-import { setCookie, getCookie } from "./cookie"
-export function login(identifier, password) {
-    //TODO  request from server authenticate token if succes, else return ERROR
-    const TOKEN = "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8";
-    setCookie("TOKEN", TOKEN);
-    return TOKEN;
-} 
-export function signup(username, email, password, repeat_password) {
-    //TODO request from server registration, return authenticate token if success, else return ERROR
-    const TOKEN = "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8";
-    setCookie("TOKEN", TOKEN);
-    return TOKEN;
+import { setCookie, getCookie } from "./cookie";
+
+export function login(email, password, remember) {
+  let validated = validate(email, password);
+  if (validated != "") return ["", validated];
+  //TODO  request from server authenticate token if succes, else return ERROR
+  const [TOKEN, ERROR] = [
+    "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
+    ""
+  ];
+  setCookie("TOKEN", remember && ERROR == "" ? TOKEN : "");
+  return ERROR == ""
+    ? [TOKEN, ""]
+    : [
+        TOKEN,
+        {
+          emailValidated: "",
+          passwordValidated: ERROR
+        }
+      ];
+}
+
+export function signup(email, password, username) {
+  let validated = validate(email, password);
+  if (validated != "") return ["", validated];
+  //TODO request from server registration, return authenticate token if success, else return ERROR
+  const [TOKEN, ERROR] = [
+    "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
+    ""
+  ];
+  setCookie("TOKEN", remember && ERROR == "" ? TOKEN : "");
+  return ERROR == ""
+    ? [TOKEN, ""]
+    : [
+        TOKEN,
+        {
+          emailValidated: "",
+          passwordValidated: ERROR
+        }
+      ];
 }
 export function isAuthorized() {
-    const TOKEN = getCookie("TOKEN")
-    let authorized =  false//TODO request from server is token correct
-    return authorized;
+  const TOKEN = getCookie("TOKEN");
+  console.log(TOKEN);
+  let authorized = TOKEN == "" ? false : true; //TODO request from server is token correct
+  return authorized;
 }
 
+function validate(email, password) {
+  let emailValidated = validateEmail(email);
+  let passwordValidated = validatePassword(password);
+  if (emailValidated != "" && passwordValidated != "")
+    return {
+      emailValidated: emailValidated,
+      passwordValidated: passwordValidated
+    };
+  return "";
+}
 
+function validatePassword(password) {
+  return "";
+}
+
+function validateEmail(email) {
+  return "";
+}

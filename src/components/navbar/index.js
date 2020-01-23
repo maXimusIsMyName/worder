@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Link} from 'react-router-dom'
-
+import './navbar.scss'
 export default function NavBar(props) {
     const [items, setItems] = useState([1].concat(new Array(props.children.length-1).fill(0)))
     const Activate = (n) => {
@@ -8,7 +8,7 @@ export default function NavBar(props) {
     }
     return (
     <div className="navbar navbar-expand-lg bg-light navbar-light">
-    <Link to="#" className="navbar-brand font-weight-light">Worder</Link>
+    <Link to="#" id="worder" className="navbar-brand font-weight-light">Worder</Link>
     <div className="collapse navbar-collapse ml-4" id="navbarContent">
       <ul className="navbar-nav mr-auto">
         {
