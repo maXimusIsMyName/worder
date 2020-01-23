@@ -33,13 +33,17 @@ export default function LoginForm(props) {
             onChange={e => setEmail(e.target.value)}
             className="form-control"
             placeholder="Type your email"
+            required
           />
         </div>
+
         {validationState.emailValidated == "" ? (
           ""
         ) : (
-          <div className="alert alert-danger" role="alert">
-            {validationState.emailValidated}
+          <div className="form-group row col-md">
+            <div className="alert alert-danger h6 w-100" role="alert">
+              {validationState.emailValidated}
+            </div>
           </div>
         )}
         <div className="form-group row col-md">
@@ -53,13 +57,16 @@ export default function LoginForm(props) {
             onClick={e => e.preventDefault}
             className="form-control"
             placeholder="Type your password"
+            required
           />
         </div>
         {validationState.passwordValidated == "" ? (
           ""
         ) : (
-          <div className="alert alert-danger" role="alert">
-            {validationState.passwordValidated}
+          <div className="form-group row col-md">
+            <div className="alert alert-danger h6 w-100" role="alert">
+              {validationState.passwordValidated}
+            </div>
           </div>
         )}
         <div className="form-group row col-md justify-space-between align-items-center">

@@ -8,7 +8,7 @@ export function login(email, password, remember) {
     "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
     ""
   ];
-  setCookie("TOKEN", remember && ERROR == "" ? TOKEN : "");
+  setCookie("TOKEN", remember && ERROR == "" ? TOKEN : "", 30);
   return ERROR == ""
     ? [TOKEN, ""]
     : [
@@ -28,7 +28,7 @@ export function signup(email, password, username) {
     "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
     ""
   ];
-  setCookie("TOKEN", remember && ERROR == "" ? TOKEN : "");
+  setCookie("TOKEN", remember && ERROR == "" ? TOKEN : "", 30);
   return ERROR == ""
     ? [TOKEN, ""]
     : [
@@ -49,7 +49,7 @@ export function isAuthorized() {
 function validate(email, password) {
   let emailValidated = validateEmail(email);
   let passwordValidated = validatePassword(password);
-  if (emailValidated != "" && passwordValidated != "")
+  if (emailValidated != "" || passwordValidated != "")
     return {
       emailValidated: emailValidated,
       passwordValidated: passwordValidated
@@ -57,10 +57,14 @@ function validate(email, password) {
   return "";
 }
 
+function validateEmail(email) {
+  return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email) ?  "" : "Email is incorrect"
+}
+
 function validatePassword(password) {
+  if (password.length < 6) return "Password must be at least 6 characters";
+  if (/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]/.test(password)) return "Password must contains numbers, and letters";
   return "";
 }
 
-function validateEmail(email) {
-  return "";
-}
+
