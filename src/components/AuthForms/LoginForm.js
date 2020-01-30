@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import * as auth from "Api/auth";
+import * as account from "Api/account";
 import { Redirect } from "react-router-dom";
 export default function LoginForm(props) {
   const [email, setEmail] = useState("");
@@ -13,7 +13,7 @@ export default function LoginForm(props) {
 
   const onSubmit = e => {
     e.preventDefault();
-    auth.login(email, password, remember).then(
+    account.login(email, password, remember).then(
       token => {
         props.returnToken(token);
       },
