@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,11 +7,14 @@ import {
   Redirect
 } from "react-router-dom";
 import NavBar from "Components/navbar";
-import { signup, login, isAuthorized } from "Utils/auth";
 const LoginForm = React.lazy(() => import("Components/AuthForms/LoginForm"));
 const SignupForm = React.lazy(() => import("Components/AuthForms/SignupForm"));
 import "./App.scss";
 export default function App() {
+  const [isAuthorized, authorize] = useState(false);
+  const onTokenReturned = Token => {
+    authorize(true)
+  }
   return (
     <Router>
       <NavBar>
@@ -25,24 +28,22 @@ export default function App() {
           Home
         </Link>
       </NavBar>
-      {
-      isAuthorized() ? (
+      {isAuthorized ? (
         <>HEllo</>
       ) : (
         <div className="display-center">
-        <Switch>
+          <Switch>
             <Route path="/">
-              <Suspense fallback={(<></>)}>
-                <LoginForm />
+              <Suspense fallback={<></>}>
+                <LoginForm returnToken={onTokenReturned}/>
               </Suspense>
             </Route>
-            <Route fallback={(<></>)} path="/signup">
+            <Route fallback={<></>} path="/signup">
               <Suspense>
-                <SignupForm />
+                <SignupForm returnToken={onTokenReturned}/>
               </Suspense>
             </Route>
-         
-        </Switch>
+          </Switch>
         </div>
       )}
     </Router>
