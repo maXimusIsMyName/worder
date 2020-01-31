@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import * as account from "Api/account";
-import { Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
+import "./auth.scss";
 export default function LoginForm(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -93,6 +94,14 @@ export default function LoginForm(props) {
         >
           Login
         </button>
+      </div>
+      <div className="from-group row col-md">
+        <Link to="/registration" className="text-decoration-none text-dark auth-link">
+          Not have account yet?
+        </Link>
+        <Link to="/resetpassword" className="text-decoration-none text-dark auth-link ml-auto">
+          Forgot password?
+        </Link>
       </div>
     </form>
   );

@@ -7,13 +7,15 @@ import {
   Redirect
 } from "react-router-dom";
 import NavBar from "Components/navbar";
+import {authToken} from 'Api/account'
 const LoginForm = React.lazy(() => import("Components/AuthForms/LoginForm"));
-const SignupForm = React.lazy(() => import("Components/AuthForms/SignupForm"));
+const RegistrationForm = React.lazy(() => import("Components/AuthForms/RegistrationForm"));
+const ResetPasswordForm = React.lazy(() => import("Components/AuthForms/ResetPasswordForm"))
 import "./App.scss";
 export default function App() {
-  const [isAuthorized, authorize] = useState(false);
+  const [token, setToken] = useState(authToken());
   const onTokenReturned = Token => {
-    authorize(true)
+    setToken(Token);
   }
   return (
     <Router>
@@ -28,19 +30,24 @@ export default function App() {
           Home
         </Link>
       </NavBar>
-      {isAuthorized ? (
+      {token ? (
         <>HEllo</>
       ) : (
         <div className="display-center">
           <Switch>
-            <Route path="/">
+            <Route path={["/login", "/"]} exact>
               <Suspense fallback={<></>}>
                 <LoginForm returnToken={onTokenReturned}/>
               </Suspense>
             </Route>
-            <Route fallback={<></>} path="/signup">
+            <Route fallback={<></>} path="/registration">
               <Suspense>
-                <SignupForm returnToken={onTokenReturned}/>
+                <RegistrationForm returnToken={onTokenReturned}/>
+              </Suspense>
+            </Route>
+            <Route fallback={<></>} path="/resetpassword">
+              <Suspense>
+                <ResetPasswordForm />
               </Suspense>
             </Route>
           </Switch>
