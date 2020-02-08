@@ -1,4 +1,4 @@
-import React, { useState,  Suspense } from "react";
+import React, { useState, Suspense } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,16 +7,22 @@ import {
   Redirect
 } from "react-router-dom";
 import NavBar from "Components/navbar";
-import {authToken} from 'Api/account'
+import { authToken } from "Api/account";
+
 const LoginForm = React.lazy(() => import("Components/AuthForms/LoginForm"));
-const RegistrationForm = React.lazy(() => import("Components/AuthForms/RegistrationForm"));
-const ResetPasswordForm = React.lazy(() => import("Components/AuthForms/ResetPasswordForm"))
+const RegistrationForm = React.lazy(() =>
+  import("Components/AuthForms/RegistrationForm")
+);
+const ResetPasswordForm = React.lazy(() =>
+  import("Components/AuthForms/ResetPasswordForm")
+);
+
 import "./App.scss";
 export default function App() {
   const [token, setToken] = useState(authToken());
   const onTokenReturned = Token => {
     setToken(Token);
-  }
+  };
   return (
     <Router>
       <NavBar>
@@ -37,16 +43,16 @@ export default function App() {
           <Switch>
             <Route path={["/login", "/"]} exact>
               <Suspense fallback={<></>}>
-                <LoginForm returnToken={onTokenReturned}/>
+                <LoginForm returnToken={onTokenReturned} />
               </Suspense>
             </Route>
-            <Route fallback={<></>} path="/registration">
-              <Suspense>
-                <RegistrationForm returnToken={onTokenReturned}/>
+            <Route path="/registration">
+              <Suspense fallback={<></>}>
+                <RegistrationForm returnToken={onTokenReturned} />
               </Suspense>
             </Route>
-            <Route fallback={<></>} path="/resetpassword">
-              <Suspense>
+            <Route path="/resetpassword">
+              <Suspense fallback={<></>}>
                 <ResetPasswordForm />
               </Suspense>
             </Route>

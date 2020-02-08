@@ -7,10 +7,9 @@ export default function LoginForm(props) {
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(true);
   const [validationState, setValidationState] = useState({
-    emailValidated: props.validated ? props.validated.email : "",
-    passwordValidated: props.validated ? props.validated.password : ""
+    email: props.validated ? props.validated.email : "",
+    password: props.validated ? props.validated.password : ""
   });
-  const [isReady, setReady] = useState(false);
 
   const onSubmit = e => {
     e.preventDefault();
@@ -20,8 +19,8 @@ export default function LoginForm(props) {
       },
       error => {
         setValidationState({
-          emailValidated: error.emailError,
-          passwordValidated: error.passwordError
+          email: error.emailError,
+          password: error.passwordError
         });
       }
     );
@@ -42,22 +41,23 @@ export default function LoginForm(props) {
         />
       </div>
 
-      {validationState.emailValidated == "" ? (
+      {validationState.email == "" ? (
         ""
       ) : (
         <div className="form-group row col-md">
           <div className="alert alert-danger h6 w-100" role="alert">
-            {validationState.emailValidated}
+            {validationState.email}
           </div>
         </div>
       )}
+
       <div className="form-group row col-md">
         <label htmlFor="password-input" className="text-dark">
           Password:
         </label>
         <input
           type="password"
-          id="input-password"
+          id="password-input"
           onChange={e => setPassword(e.target.value)}
           onClick={e => e.preventDefault}
           className="form-control"
@@ -65,15 +65,17 @@ export default function LoginForm(props) {
           required
         />
       </div>
-      {validationState.passwordValidated == "" ? (
+
+      {validationState.password == "" ? (
         ""
       ) : (
         <div className="form-group row col-md">
           <div className="alert alert-danger h6 w-100" role="alert">
-            {validationState.passwordValidated}
+            {validationState.password}
           </div>
         </div>
       )}
+
       <div className="form-group row col-md justify-space-between align-items-center">
         <div className="form-check align-items-center">
           <input
@@ -96,10 +98,16 @@ export default function LoginForm(props) {
         </button>
       </div>
       <div className="from-group row col-md">
-        <Link to="/registration" className="text-decoration-none text-dark auth-link">
+        <Link
+          to="/registration"
+          className="text-decoration-none text-dark auth-link"
+        >
           Not have account yet?
         </Link>
-        <Link to="/resetpassword" className="text-decoration-none text-dark auth-link ml-auto">
+        <Link
+          to="/resetpassword"
+          className="text-decoration-none text-dark auth-link ml-auto"
+        >
           Forgot password?
         </Link>
       </div>

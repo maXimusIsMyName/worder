@@ -3,19 +3,11 @@ import { requestAuthorize, requestRegistration } from "./protocol";
 
 let TOKEN;
 
-export function getUserData() {
-    
-}
+export function getUserData() {}
 
-export function updateUsername(username) {
+export function updateUsername(username) {}
 
-}
-
-export function updatePassword(password) {
-
-}
-
-
+export function updatePassword(password) {}
 
 export function login(email, password, remember) {
   let [emailValidated, passwordValidated] = [
@@ -39,7 +31,7 @@ export function login(email, password, remember) {
   }
 }
 
-export function registration(email, password, username) {
+export function registration(email, password, username, remember) {
   let [emailValidated, passwordValidated, usernameValidated] = [
     validateEmail(email),
     validatePassword(password),
