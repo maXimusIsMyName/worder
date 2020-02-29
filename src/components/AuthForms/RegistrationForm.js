@@ -2,20 +2,22 @@ import React, { useState } from "react";
 import * as account from "Api/account";
 import { Link } from "react-router-dom";
 import "./auth.scss";
-export default function LoginForm(props) {
+
+export default function RegistrationForm(props) {
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [remember, setRemember] = useState(true);
-  const [validationState, setValidationState] = useState({
-    email: props.validated ? props.validated.email : "",
-    password: props.validated ? props.validated.password : ""
+  const [remember, setRemember] = useState(false);
+  const [validation, setValidationState] = useState({
+    username: "",
+    email: "",
+    password: ""
   });
-
   const onSubmit = e => {
     e.preventDefault();
-    account.login(email, password, remember).then(
-      token => {
-        props.returnToken(token);
+    account.registration(email, password, username, remember).then(
+      TOKEN => {
+        props.returnToken(TOKEN);
       },
       error => {
         setValidationState({
@@ -28,54 +30,38 @@ export default function LoginForm(props) {
   return (
     <form>
       <div className="form-group row col-md">
-        <label htmlFor="email-input" className="text-dark">
-          Email:
-        </label>
+        <label htmlFor="username-input">Username: </label>
+        <input
+          type="text"
+          className="form-control"
+          name="username"
+          id="username-input"
+          placeholder="Type your username"
+          onChange={e => setUsername(e.target.value)}
+        />
+      </div>
+      <div className="form-group row col-md">
+        <label htmlFor="email-input">Email: </label>
         <input
           type="email"
-          id="email-input"
-          onChange={e => setEmail(e.target.value)}
           className="form-control"
+          name="email"
+          id="email-input"
           placeholder="Type your email"
-          required
+          onChange={e => setEmail(e.target.value)}
         />
       </div>
-
-      {validationState.email == "" ? (
-        ""
-      ) : (
-        <div className="form-group row col-md">
-          <div className="alert alert-danger h6 w-100" role="alert">
-            {validationState.email}
-          </div>
-        </div>
-      )}
-
-      <div className="form-group row col-md">
-        <label htmlFor="password-input" className="text-dark">
-          Password:
-        </label>
+      <div className="form-group">
+        <label htmlFor="password-input">Password: </label>
         <input
           type="password"
-          id="password-input"
-          onChange={e => setPassword(e.target.value)}
-          onClick={e => e.preventDefault}
           className="form-control"
+          name="password"
+          id="password-input"
           placeholder="Type your password"
-          required
+          onChange={e => setPassword(e.target.value)}
         />
       </div>
-
-      {validationState.password == "" ? (
-        ""
-      ) : (
-        <div className="form-group row col-md">
-          <div className="alert alert-danger h6 w-100" role="alert">
-            {validationState.password}
-          </div>
-        </div>
-      )}
-
       <div className="form-group row col-md justify-space-between align-items-center">
         <div className="form-check align-items-center">
           <input
@@ -94,7 +80,7 @@ export default function LoginForm(props) {
           onClick={onSubmit}
           className=" btn ml-auto btn-primary font-weight-light "
         >
-          Login
+          Registration
         </button>
       </div>
       <div className="from-group row col-md">
@@ -102,13 +88,7 @@ export default function LoginForm(props) {
           to="/registration"
           className="text-decoration-none text-dark auth-link"
         >
-          Not have account yet?
-        </Link>
-        <Link
-          to="/resetpassword"
-          className="text-decoration-none text-dark auth-link ml-auto"
-        >
-          Forgot password?
+          Already have account?
         </Link>
       </div>
     </form>

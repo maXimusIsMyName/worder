@@ -1,20 +1,22 @@
-import React, { useState,  Suspense } from "react";
+import React, { useState, Suspense } from "react";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
-  Redirect
+  Link
 } from "react-router-dom";
+
 import NavBar from "Components/navbar";
-const LoginForm = React.lazy(() => import("Components/AuthForms/LoginForm"));
-const SignupForm = React.lazy(() => import("Components/AuthForms/SignupForm"));
+import Authorization from  "Components/Authorization"
+import * as account from "Api/account";
+
 import "./App.scss";
+
 export default function App() {
-  const [isAuthorized, authorize] = useState(false);
+  const [token, setToken] = useState(account.authToken());
   const onTokenReturned = Token => {
-    authorize(true)
-  }
+    setToken(Token);
+  };
   return (
     <Router>
       <NavBar>
@@ -28,24 +30,20 @@ export default function App() {
           Home
         </Link>
       </NavBar>
-      {isAuthorized ? (
-        <>HEllo</>
+      {token ? (
+        <div className="app-grid container-fluid">
+
+        </div>
       ) : (
         <div className="display-center">
-          <Switch>
-            <Route path="/">
-              <Suspense fallback={<></>}>
-                <LoginForm returnToken={onTokenReturned}/>
-              </Suspense>
-            </Route>
-            <Route fallback={<></>} path="/signup">
-              <Suspense>
-                <SignupForm returnToken={onTokenReturned}/>
-              </Suspense>
-            </Route>
-          </Switch>
+
+          <Authorization onSubmit={onTokenReturned}></Authorization>
+
         </div>
       )}
     </Router>
   );
 }
+
+
+
