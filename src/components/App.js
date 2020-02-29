@@ -7,14 +7,9 @@ import {
   Redirect
 } from "react-router-dom";
 import NavBar from "Components/navbar";
-<<<<<<< HEAD
 import Authorization from  "Components/Authorization"
 import * as account from "Api/account";
 
-=======
-const LoginForm = React.lazy(() => import("Components/AuthForms/LoginForm"));
-const SignupForm = React.lazy(() => import("Components/AuthForms/SignupForm"));
->>>>>>> acca89a83cfc1d6e0654368aa07d18d01b7cc179
 import "./App.scss";
 export default function App() {
   const [isAuthorized, authorize] = useState(false);
