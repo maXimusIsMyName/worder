@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as account from "Api/account";
-import { Link } from "react-router-dom";
-import "./auth.scss";
+import { Redirect } from "react-router-dom";
 export default function LoginForm(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(true);
   const [validationState, setValidationState] = useState({
-    email: props.validated ? props.validated.email : "",
-    password: props.validated ? props.validated.password : ""
+    emailValidated: props.validated ? props.validated.email : "",
+    passwordValidated: props.validated ? props.validated.password : ""
   });
+  const [isReady, setReady] = useState(false);
 
   const onSubmit = e => {
     e.preventDefault();
@@ -19,8 +19,8 @@ export default function LoginForm(props) {
       },
       error => {
         setValidationState({
-          email: error.emailError,
-          password: error.passwordError
+          emailValidated: error.emailError,
+          passwordValidated: error.passwordError
         });
       }
     );
@@ -41,23 +41,22 @@ export default function LoginForm(props) {
         />
       </div>
 
-      {validationState.email == "" ? (
+      {validationState.emailValidated == "" ? (
         ""
       ) : (
         <div className="form-group row col-md">
           <div className="alert alert-danger h6 w-100" role="alert">
-            {validationState.email}
+            {validationState.emailValidated}
           </div>
         </div>
       )}
-
       <div className="form-group row col-md">
         <label htmlFor="password-input" className="text-dark">
           Password:
         </label>
         <input
           type="password"
-          id="password-input"
+          id="input-password"
           onChange={e => setPassword(e.target.value)}
           onClick={e => e.preventDefault}
           className="form-control"
@@ -65,17 +64,15 @@ export default function LoginForm(props) {
           required
         />
       </div>
-
-      {validationState.password == "" ? (
+      {validationState.passwordValidated == "" ? (
         ""
       ) : (
         <div className="form-group row col-md">
           <div className="alert alert-danger h6 w-100" role="alert">
-            {validationState.password}
+            {validationState.passwordValidated}
           </div>
         </div>
       )}
-
       <div className="form-group row col-md justify-space-between align-items-center">
         <div className="form-check align-items-center">
           <input
@@ -96,20 +93,6 @@ export default function LoginForm(props) {
         >
           Login
         </button>
-      </div>
-      <div className="from-group row col-md">
-        <Link
-          to="/registration"
-          className="text-decoration-none text-dark auth-link"
-        >
-          Not have account yet?
-        </Link>
-        <Link
-          to="/resetpassword"
-          className="text-decoration-none text-dark auth-link ml-auto"
-        >
-          Forgot password?
-        </Link>
       </div>
     </form>
   );
