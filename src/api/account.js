@@ -4,12 +4,17 @@ import { requestAuthorize, requestRegistration } from "./protocol";
 let TOKEN;
 
 export function getUserData() {}
+<<<<<<< HEAD
 
 export function updateUserData(newData) {
   
 }
+=======
+>>>>>>> cf6ae1b1a1e53d03e9f4e89fabd82a5be4c58a13
 
+export function updateUsername(username) {}
 
+export function updatePassword(password) {}
 
 export function login(email, password, remember) {
   let [emailValidated, passwordValidated] = [
