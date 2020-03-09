@@ -33,7 +33,7 @@ export function login(email, password, remember) {
   }
 }
 
-export function registration(email, password, username, remember) {
+export function registration(email, password, username) {
   let [emailValidated, passwordValidated, usernameValidated] = [
     validateEmail(email),
     validatePassword(password),
