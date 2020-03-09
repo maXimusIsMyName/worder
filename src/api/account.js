@@ -1,21 +1,15 @@
 import { setCookie, getCookie } from "Utils/cookie";
-import { requestAuthorize, requestRegistration } from "./protocol";
+import {
+  requestAuthorize,
+  requestRegistration,
+  requestResetPassword
+} from "./protocol";
 
 let TOKEN;
 
-export function getUserData() {
-    
-}
+export function getUserData() {}
 
-export function updateUsername(username) {
-
-}
-
-export function updatePassword(password) {
-
-}
-
-
+export function updateUserData(newData) {}
 
 export function login(email, password, remember) {
   let [emailValidated, passwordValidated] = [
@@ -63,6 +57,12 @@ export function registration(email, password, username) {
     };
     console.error(error);
     return Promise.reject(error);
+  }
+}
+
+export function resetPassword(email) {
+  let emailValidated = validateEmail(email);
+  if (!emailValidated) {
   }
 }
 
