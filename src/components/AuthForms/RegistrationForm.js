@@ -85,10 +85,16 @@ export default function RegistrationForm(props) {
       </div>
       <div className="from-group row col-md">
         <Link
-          to="/registration"
+          to="/login"
           className="text-decoration-none text-dark auth-link"
         >
           Already have account?
+        </Link>
+        <Link
+          to="/resetpassword"
+          className="text-decoration-none text-dark auth-link ml-auto"
+        >
+          Forgot password?
         </Link>
       </div>
     </form>
