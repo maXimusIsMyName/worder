@@ -25,8 +25,8 @@ export function login(email, password, remember) {
   } else {
     let error = {
       error: "Registration: Validation went wrong",
-      emailValidated: emailValidated,
-      passwordValidated: passwordValidated
+      emailError: emailValidated,
+      passwordError: passwordValidated
     };
     console.error(error);
     return Promise.reject(error);
