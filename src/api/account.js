@@ -62,7 +62,13 @@ export function registration(email, password, username) {
 
 export function resetPassword(email) {
   let emailValidated = validateEmail(email);
-  if (!emailValidated) {
+  if (!emailValidated) return requestResetPassword(email);
+  else {
+    let error = {
+      error: "Reset password: Validation went wrong"
+    };
+    console.error(error);
+    return Promise.reject(error);
   }
 }
 
