@@ -23,8 +23,11 @@ export default function App() {
         <Route path='/'>
         <div className="app-grid container-fluid">
           <Switch>
-            <Route path='/dicts/'>
-              <Dicts></Dicts>
+            <Route path={['/', '/dicts/']}>
+              <Suspense fallback={<></>}>
+                <Dicts></Dicts>
+              </Suspense>
+              
             </Route>
           </Switch>
         </div>
