@@ -2,16 +2,10 @@ import React, { useState, Suspense } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import NavBar from "Components/navbar";
-import Authorization from "Components/AuthForms/Authorization";
-import * as account from "Api/account";
-
+const Dicts = React.lazy( () => import('Components/dicts'))
 import "./App.scss";
 
 export default function App() {
-  const [token, setToken] = useState(account.authToken());
-  const onTokenReturned = Token => {
-    setToken(Token);
-  };
   return (
     <Router>
       <NavBar>
@@ -25,13 +19,20 @@ export default function App() {
           Home
         </Link>
       </NavBar>
-      {token ? (
-        <div className="app-grid container-fluid"></div>
-      ) : (
-        <div className="display-center">
-          <Authorization onSubmit={onTokenReturned}></Authorization>
+      <Switch>
+        <Route path='/'>
+        <div className="app-grid container-fluid">
+          <Switch>
+            <Route path='/dicts/'>
+              <Dicts></Dicts>
+            </Route>
+          </Switch>
         </div>
-      )}
+        </Route>
+        
+      </Switch>
+      
+
     </Router>
   );
 }

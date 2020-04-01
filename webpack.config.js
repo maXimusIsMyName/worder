@@ -2,10 +2,13 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
-  entry: "./src/index.js",
+  optimization: {
+    minimize: false
+  },
+  entry: { auth: "./src/components/AuthForms/Authorization.js", dicts: "./src/components/dicts/index.js" ,  index: "./src/index.js"} ,
   output: {
     path: path.join(__dirname, "/dist"),
-    filename: "index_bundle.js"
+    filename: "[name]_bundle.js"
   },
   module: {
     rules: [
@@ -57,6 +60,7 @@ module.exports = {
   ],
   resolve: {
     alias: {
+      Src: path.resolve(__dirname, 'src/'),
       Assets: path.resolve(__dirname, 'src/assets/'),
       Components: path.resolve(__dirname, 'src/components/'),
       Utils: path.resolve(__dirname, 'src/utils/'),

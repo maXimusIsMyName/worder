@@ -1,9 +1,5 @@
 import { setCookie, getCookie } from "Utils/cookie";
-import {
-  requestAuthorize,
-  requestRegistration,
-  requestResetPassword
-} from "./protocol";
+import * as protocol from "./protocol";
 
 let TOKEN;
 
@@ -17,7 +13,7 @@ export function login(email, password, remember) {
     validatePassword(password)
   ];
   if (!emailValidated && !passwordValidated) {
-    return requestAuthorize(email, password).then(token => {
+    return protocol.authorize(email, password).then(token => {
       TOKEN = token;
       if (remember) setCookie("TOKEN", TOKEN, 30);
       return Promise.resolve(token);
@@ -40,7 +36,7 @@ export function registration(email, password, username) {
     validateUsername(username)
   ];
   if (!emailValidated && !passwordValidated && !usernameValidated) {
-    return requestRegistration(email, password, username).then(
+    return protocol.registration(email, password, username).then(
       TOKEN => {
         TOKEN = token;
         if (remember) setCookie("TOKEN", TOKEN, 30);
@@ -62,7 +58,7 @@ export function registration(email, password, username) {
 
 export function resetPassword(email) {
   let emailValidated = validateEmail(email);
-  if (!emailValidated) return requestResetPassword(email);
+  if (!emailValidated) return protocol.resetPassword(email);
   else {
     let error = {
       error: "Reset password: Validation went wrong"

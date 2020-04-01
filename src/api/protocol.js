@@ -1,16 +1,56 @@
-export function requestAuthorize(email, password) {
-  return Promise.resolve(
-    "2BABBDB952D580F722FB7DF69BC97F396CD89E63B2E1E07DBD37A1C5DF921D9C"
-  );
+import * as test from './test'
+
+export function authorize(email, password) {
+  return test.authorize(email,password); //TODO REMOVE IN RELEASE
 }
-export function requestRegistration(username, email, password) {
-  return Promise.resolve(
-    "2BABBDB952D580F722FB7DF69BC97F396CD89E63B2E1E07DBD37A1C5DF921D9C"
-  );
+export function registration(username, email, password) {
+  return test.registration(username, email, password); //TODO REMOVE IN RELEASE
+
 }
-export function requestResetPassword(email) {
-  return Promise.resolve(true);
+export function resetPassword(email) {
+  return test.resetPassword(email)  //TODO REMOVE IN RELEASE
 }
-export function requestUpdatePassword(password, token) {}
-export function requestUpdateUsername(username, token) {}
-export function requestUserData(token) {}
+
+export function userData(token) {
+  return test.userData(token)
+}
+
+export function updateUserData(changes, token) {
+  return test.updateUserData(changes, token)
+}
+
+
+
+export function dictsId() {
+  return test.dictsId()  //TODO REMOVE IN RELEASE
+  return fetch('/dicts/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  })
+} 
+
+export function wordsByDictId(id, languageForm, languageTo) {
+  return test.wordsByDictId(id, languageForm, languageTo)  //TODO REMOVE IN RELEASE
+  return fetch(`/dicts/${id}/play`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: {
+    'language-from': languageForm,
+    'language-to': languageTo   
+    }
+  })
+}
+
+export function dictById(id) {
+ return test.dictById(id)  //TODO REMOVE IN RELEASE
+ return fetch(`/dicts/${id}/` , {
+   method: 'POST',
+   headers: {
+    'Content-Type': 'application/json'
+   }
+ })
+}
