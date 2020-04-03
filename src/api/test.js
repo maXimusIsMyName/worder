@@ -4,6 +4,7 @@ let test_data = {
         id: 0,
         name: 'dict1',
         languages: ['english', 'russian'],
+        description: "test dictionary that contains 5 words to test how the app works",
         'word-count': 4
     },
     words: [
