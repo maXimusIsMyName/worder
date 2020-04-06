@@ -31,17 +31,13 @@ export function dictsId() {
   })
 } 
 
-export function wordsByDictId(id, languageForm, languageTo) {
-  return test.wordsByDictId(id, languageForm, languageTo)  //TODO REMOVE IN RELEASE
+export function wordsByDictId(id) {
+  return test.wordsByDictId(id)  //TODO REMOVE IN RELEASE
   return fetch(`/dicts/${id}/play`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: {
-    'language-from': languageForm,
-    'language-to': languageTo   
-    }
   })
 }
 
