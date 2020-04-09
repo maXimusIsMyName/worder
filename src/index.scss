@@ -1,12 +1,13 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap");
+$enable-gradients: true;
 $theme-colors: (
-  "primary": #5851ff,
-  "secondary": #a19dff,
-  "success": #51ff58,
-  "danger": #ff5851,
-  "warning": #f8ff51,
-  "info": #51f8ff,
-  "light": #e5e5e5,
+  "primary": #503ee5,
+  "secondary": #6ab0eb,
+  "success": #3ee550,
+  "danger": #e5503e,
+  "warning": #e5a43e,
+  "info": #83eec5,
+  "light": #fafafa,
   "dark": #212121
 );
 
