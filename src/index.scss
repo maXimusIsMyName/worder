@@ -1,14 +1,21 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap");
-$enable-gradients: true;
+
 $theme-colors: (
-  "primary": #503ee5,
-  "secondary": #6ab0eb,
-  "success": #3ee550,
-  "danger": #e5503e,
-  "warning": #e5a43e,
-  "info": #83eec5,
-  "light": #fafafa,
-  "dark": #212121
+  primary:#563d7c,
+  secondary:#868e96,
+  success:#28a745,
+  danger:#dc3545,
+  info:#17a2b8,
+  warning:#ffc107,
+  light:#f8f9fa,
+  dark:#343434
 );
+
+$enable-gradients: false;
+$spacer:1.2rem;
+$border-width:1px;
+$btn-border-radius:1.35rem;
+$enable-shadows:false;
+
 
 @import "~bootstrap/scss/bootstrap";
