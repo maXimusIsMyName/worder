@@ -1,35 +1,44 @@
-import React, { Suspense, useState } from "react";
-import { Route, Switch, Link, useRouteMatch } from "react-router-dom";
-import * as api from 'Api/dictionary'
-const Play = React.lazy(() => import("./play"));
-const Details = React.lazy(() => import("./details"));
-const List = React.lazy(() => import('./list'))
+import React, { Suspense } from "react";
+import NavBar from "Components/navbar/";
+import {
+  Route,
+  Switch,
+  Link,
+  useRouteMatch,
+  useParams,
+  Redirect,
+} from "react-router-dom";
+import * as api from "Api/dictionary";
+const Play = React.lazy(() => import("Components/dicts/play"));
+const Details = React.lazy(() => import("Components/dicts/details"));
+const List = React.lazy(() => import("Components/dicts/list"));
+
 export default function Dictionaries(props) {
   const { path, url } = useRouteMatch();
   return (
     <div className="dictionary-container">
       <Switch>
-        <Route path={[`${path}/`]}>
-        <Suspense fallback={<></>}>
-          <List generator={dicts}> </List>
-          </Suspense>
-        </Route>
         <Route path={[`${path}/details/:dictId`]}>
           <Suspense fallback={<></>}>
             <Details></Details>
           </Suspense>
+          
         </Route>
         <Route path={[`${path}/play/:dictId`]}>
-        <Suspense fallback={<></>}>
-          <Play></Play>
-        </Suspense>
+          <Suspense fallback={<></>}>
+            <Play></Play>
+          </Suspense>
+        </Route>
+        <Route path={[`${path}/`, `${path}/list`]}>
+          <Suspense fallback={<></>}>
+            <List dicts={dicts}> </List>
+          </Suspense>
         </Route>
       </Switch>
     </div>
   );
 }
- function* dicts() {
-   for(id in api.dicts()) {
-      yield api.detailsById(id)
-   }
- }
+function dicts() {
+  return api.dicts().then((ids) => ids.map((e) => api.detailsById(e)));
+}
+
