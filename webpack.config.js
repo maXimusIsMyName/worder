@@ -7,6 +7,9 @@ module.exports = {
   },
   entry: { auth: "./src/components/AuthForms/Authorization.js", dicts: "./src/components/dicts/index.js" ,  index: "./src/index.js"} ,
   output: {
+
+
+    publicPath: '/',
     path: path.join(__dirname, "/dist"),
     filename: "[name]_bundle.js"
   },
