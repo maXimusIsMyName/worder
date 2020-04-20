@@ -7,8 +7,10 @@ let test_data = {
     description:
       "test dictionary that contains 5 words to test how the app works",
     "word-count": 4,
+    words: [0, 1, 3, 4]
   },
   words: [
+
     {
       id: 0,
       translations: [
@@ -75,6 +77,6 @@ export const dictById = (id) => {
 };
 export const wordsByDictId = (id) => {
   return Promise.resolve(
-    new Response(JSON.stringify({ words: test_data.words }), { status: 200 })
+    new Response(JSON.stringify( test_data.words ), { status: 200 })
   );
 };

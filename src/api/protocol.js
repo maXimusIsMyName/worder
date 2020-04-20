@@ -23,7 +23,7 @@ export function updateUserData(changes, token) {
 
 export function dictsId() {
   return test.dictsId()  //TODO REMOVE IN RELEASE
-  return fetch('/dicts/', {
+  return fetch('api/dicts/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -33,7 +33,7 @@ export function dictsId() {
 
 export function wordsByDictId(id) {
   return test.wordsByDictId(id)  //TODO REMOVE IN RELEASE
-  return fetch(`/dicts/${id}/play`, {
+  return fetch(`api/dicts/${id}/words`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -43,7 +43,7 @@ export function wordsByDictId(id) {
 
 export function dictById(id) {
  return test.dictById(id)  //TODO REMOVE IN RELEASE
- return fetch(`/dicts/${id}/` , {
+ return fetch(`api/dicts/${id}/details` , {
    method: 'POST',
    headers: {
     'Content-Type': 'application/json'
