@@ -1,14 +1,16 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap");
 
 $theme-colors: (
-  primary:#563d7c,
-  secondary:#868e96,
-  success:#28a745,
-  danger:#dc3545,
-  info:#17a2b8,
-  warning:#ffc107,
-  light:#f8f9fa,
-  dark:#343434
+  primary:#20c997,
+  accent: #785462,
+  gray: #e0e0e0,
+  secondary:#9996BE,
+  success:#49bb6b,  
+  danger:#f44336,
+  info:#232d44,
+  warning:#c6ab33,
+  light:#f6f4f5,
+  dark:#232d44
 );
 
 $enable-gradients: false;
