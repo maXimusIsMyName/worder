@@ -2,7 +2,7 @@ import React from 'react'
 import './selectGroup.scss'
 export default function Group(props) {
     return (
-      <div className="d-flex flex-column w-40">
+      <div className="d-flex w-100 flex-column mx-3">
         {props.group.map((e, i, a) => (
           <div
             key={e}
