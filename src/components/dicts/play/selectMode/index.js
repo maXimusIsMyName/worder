@@ -4,7 +4,7 @@ export default function SelectMode(props) {
   const [mode, setMode] = useState();
 
   return (
-    <div className="d-flex flex-column w-50 select-language justify-content-between display-center">
+    <div className="d-flex flex-column w-25 select-language justify-content-between display-center">
       <h1 className="font-weight-light text-center">Select mode</h1>
 
       <div className="d-flex mt-5 justify-content-between">
