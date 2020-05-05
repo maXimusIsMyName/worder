@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import ModeGroup from "Components/selectGroup";
+import Next from "Components/conditionBtn";
 export default function SelectMode(props) {
   const [mode, setMode] = useState(props.mode);
 
   return (
-    <div className="d-flex flex-column w-50 min-1 justify-content-between">
+    <div className="d-flex flex-column w-50 w-min-1 justify-content-between">
       <h1 className="font-weight-light text-center">Select mode</h1>
 
       <div className="d-flex mt-5 justify-content-between">
@@ -15,15 +16,11 @@ export default function SelectMode(props) {
           color="accent"
         />
       </div>
-      <button
-       onClick={() => mode  ? props.select(mode) : ""}
-        className={
-          "btn btn-primary mt-5 px-4 py-1 align-self-end align-middle next " +
-          (mode ? "" : "btn-gray disabled shadow-none")
-        }
-      >
+      <div className="mt-5 align-self-end">
+      <Next condition={mode} onClick={() => props.select(mode)}>
         next<i className="fas fa-angle-right ml-2"></i>
-      </button>
+      </Next>
+      </div>
     </div>
   );
 }

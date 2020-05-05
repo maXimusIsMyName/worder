@@ -10,15 +10,14 @@ export default function Play(props) {
   useEffect(() => {
     getWords(id).then((words) => props.setWords(words));
   }, [id]);
-
   const [step, setStep] = useState(0);
   return (
-    <div className="d-flex bg-light pb-3 w-50 flex-column display-center min-2 " >
+    <div className="d-flex bg-light pb-3 w-50 flex-column display-center w-min-2 ">
       <Header
         step={step}
         back={() => (step > 0 ? setStep(step - 1) : history.back())}
       />
-      <div className="mt-4 px-2 w-100 d-flex flex-column position-relativ min-1 align-items-center">
+      <div className="mt-4 h-min-1  px-2 w-100 d-flex flex-column position-relative w-min-1 align-items-center">
         {step == 0 ? (
           <Suspense fallback={<></>}>
             <SelectLanguage
@@ -54,7 +53,7 @@ export default function Play(props) {
 function Header(props) {
   const steps = ["Language choose", "Mode choose", "Play"];
   return (
-    <div className="card-header rounded-top bg-secondary text-light w-100 d-dlex align-items-center">
+    <div className={"card-header rounded-top text-light w-100 d-dlex align-items-center " + (props.step==steps.length-1 ? " bg-accent" : " bg-secondary")}>
       <button
         className="shadow-none btn-dark btn bg-transparent border-0 border-transparent py-0 ml-2 mr-4"
         onClick={() => props.back()}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import LanguageGroup from "Components/selectGroup";
 import { DictContext } from "Api/dictionary";
-import "./SelectLanguage.scss";
+import Next from "Components/conditionBtn";
 export default function SelectLanguage(props) {
   const [fromLanguage, setFromLanguage] = useState(props.from);
   const [toLanguage, setToLanguage] = useState(props.to);
@@ -11,7 +11,7 @@ export default function SelectLanguage(props) {
   };
 
   return (
-    <div className="d-flex flex-column w-75 min-1 justify-content-between">
+    <div className="d-flex flex-column w-75 w-min-1 justify-content-between">
       <h1 className="font-weight-light text-center">Select language</h1>
 
       <DictContext.Consumer>
@@ -50,15 +50,14 @@ export default function SelectLanguage(props) {
           );
         }}
       </DictContext.Consumer>
-      <button
-        onClick={() => fromLanguage && toLanguage ? props.select({ from: fromLanguage, to: toLanguage }) : ""}
-        className={
-          "btn btn-primary mt-5 px-4 py-1 align-self-end align-middle next " +
-          (fromLanguage && toLanguage ? "" : "btn-gray disabled shadow-none")
-        }
+      <div className="mt-5 align-self-end">
+      <Next
+        condition={fromLanguage && toLanguage}
+        onClick={() => props.select({ from: fromLanguage, to: toLanguage })}
       >
         next<i className="fas fa-angle-right ml-2"></i>
-      </button>
+      </Next>
+      </div>
     </div>
   );
 }

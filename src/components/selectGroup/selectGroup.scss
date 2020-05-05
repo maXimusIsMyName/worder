@@ -1,7 +1,4 @@
-.w-40 {
-    width: 40%;
-  }
-  .top {
+.top {
     border-top-left-radius: 10px !important;
     border-top-right-radius: 10px !important;
     padding-top: 5px;
@@ -10,4 +7,11 @@
     padding-bottom: 5px;
     border-bottom-left-radius: 10px !important;
     border-bottom-right-radius: 10px !important;
+  }
+  .item {
+  
+        font-size: 1.25rem;
+        font-weight: 300;
+    
+      
   }
