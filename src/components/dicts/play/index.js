@@ -17,7 +17,7 @@ export default function Play(props) {
         step={step}
         back={() => (step > 0 ? setStep(step - 1) : history.back())}
       />
-      <div className="mt-4 h-min-1  px-2 w-100 d-flex flex-column position-relative w-min-1 align-items-center">
+      <div className="mt-4 h-min-2  px-2 w-100 d-flex flex-column position-relative w-min-1 align-items-center">
         {step == 0 ? (
           <Suspense fallback={<></>}>
             <SelectLanguage
