@@ -42,8 +42,8 @@ let test_data = {
     {
       id: 4,
       translations: [
-        { name: "english", content: "bye" },
-        { name: "russian", content: "poka" },
+        { name: "english", content: "local" },
+        { name: "russian", content: "lokalniy" },
       ],
     },
   ],
