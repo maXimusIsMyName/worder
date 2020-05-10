@@ -22,7 +22,6 @@ export default function Learn(props) {
      
       <div className="mt-5 align-self-end">
         <Next condition={true} onClick={next}>
-          {" "}
           next<i className="fas fa-angle-right ml-2"></i>{" "}
         </Next>
       </div>
