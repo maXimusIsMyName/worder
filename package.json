@@ -1,6 +1,6 @@
 {
   "name": "worder",
-  "version": "0.0.1",
+  "version": "0.2",
   "description": "App to learn language",
   "main": "/src/index.js",
   "scripts": {
